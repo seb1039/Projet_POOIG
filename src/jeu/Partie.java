@@ -9,7 +9,8 @@ public class Partie {
 	private Plateau p;
 	private LinkedList<Joueur> participants;
 	private int tourActuel;
-	private Des des;
+	private De de1;
+	private De de2
 
 	// Constructeur
 	public Partie() {

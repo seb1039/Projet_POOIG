@@ -2,27 +2,24 @@ package plateau;
 
 import java.util.Random;
 
-public class Des {
+public class De {
 	
-	private int de1;
-	private int de2;
+	private int de;
+	private final int max;
+	private Random n;
 	
-	public Des(){
-		de1 = de2 = 0;
+	public De(int max){
+		de = 0;
+		this.max = max;
+		n = new Random();
 	}
 	
-	public int getDe1(){
-		return this.de1;
-	}
-	
-	public int getDe2(){
-		return this.de2;
+	public int getDe(){
+		return this.de;
 	}
 	
 	public void nouveauLancer(){
-		Random n = new Random();
-		de1 = 1 + n.nextInt(6);
-		de2 = 1 + n.nextInt(6);
+		de = 1 + n.nextInt(max);
 	}
 	
 	

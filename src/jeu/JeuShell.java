@@ -26,10 +26,10 @@ public class JeuShell {
 				Joueur courant = it.next();
 				posCour = courant.getPosition();
 				partie.libereCase(posCour);				
-				newPos = courant.joueTour(partie.getDes());
+				newPos = courant.joueTour(partie.getDe());
 				partie.occupeCase(newPos,courant);
 				if(newPos == 9 && partie.getTourActuel() == 1){
-					if(partie.getDes().getDe1() == 3 || partie.getDes().getDe2() == 3 ){
+					if(partie.getDes().getDe1() == 3 || partie.getDe().getDe() == 3 ){
 						//appel methodes de CasesNeuf
 					}
 						
