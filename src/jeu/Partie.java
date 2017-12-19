@@ -10,12 +10,13 @@ public class Partie {
 	private LinkedList<Joueur> participants;
 	private int tourActuel;
 	private De de1;
-	private De de2
+	private De de2;
 
 	// Constructeur
 	public Partie() {
 		super();
-		this.des = new Des();
+		this.de1 = new De(6);
+		this.de2 = new De(6);
 		this.p = new Plateau();
 		this.participants = new LinkedList<Joueur>();
 		this.tourActuel = 0;
@@ -38,8 +39,12 @@ public class Partie {
 		return tourActuel;
 	}
 
-	public Des getDes() {
-		return this.des;
+	public De getDe1() {
+		return this.de1;
+	}
+	
+	public De getDe2() {
+		return this.de2;
 	}
 
 	// Incrémentation du numéro du tour actuel
@@ -65,6 +70,13 @@ public class Partie {
 			return false;
 		p.getCases(pos).setOccupant(j);
 		return true;
+	}
+	
+	public void deplacementSaut(int posCour, int newPos, Joueur participant) {
+		posCour = newPos;
+		this.libereCase(posCour);
+		newPos = ((CasesSaut) this.getP().getCases(newPos)).getDest();
+		this.occupeCase(newPos, participant);
 	}
 
 }

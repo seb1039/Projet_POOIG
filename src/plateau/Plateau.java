@@ -14,7 +14,7 @@ public class Plateau {
 				plateau[i] = new CasesNeuf();
 			}
 			else if (i == 6){
-				plateau[i] = new CasesSaut();
+				plateau[i] = new CasesSaut(12);
 			}
 			else if (i == 19){
 				plateau[i] = new CasesHotel();
@@ -23,13 +23,13 @@ public class Plateau {
 				plateau[i] = new CasesLiberation();
 			}
 			else if (i == 42){
-				plateau[i] = new CasesSaut();
+				plateau[i] = new CasesSaut(30);
 			}
 			else if (i == 52){
 				plateau[i] = new CasesLiberation();
 			}
 			else if (i == 58){
-				plateau[i] = new CasesSaut();
+				plateau[i] = new CasesSaut(1);
 			}
 			else{
 				plateau[i] = new CasesNormales();
