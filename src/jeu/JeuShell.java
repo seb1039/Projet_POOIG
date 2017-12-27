@@ -31,15 +31,10 @@ public class JeuShell {
 					newPos = courant.joueTour(partie.getDe1(), partie.getDe2());
 					partie.occupeCase(newPos, courant);
 					if (partie.getP().getCases(newPos) instanceof CasesSaut) {
-						if ((partie.getP().getCases(newPos) instanceof CasesNeuf) && (partie.getTourActuel() == 1
-								&& (partie.getDe1().getDe() == 3 || partie.getDe2().getDe() == 3))) {
-							// appel methodes de CasesNeuf
-							posCour = newPos;
-							partie.libereCase(posCour);
-							newPos = ((CasesNeuf) partie.getP().getCases(newPos)).getDestpremtour();
-							partie.occupeCase(newPos, courant);
+						if ((partie.getP().getCases(newPos) instanceof CasesNeuf))
+							((CasesNeuf)partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
 						} else
-							partie.deplacementSaut(posCour, newPos, courant);
+							((CasesSaut)partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
 					}
 					else if (partie.getP().getCases(newPos) instanceof CasesAttente) {
 						courant.setLibre(false);
