@@ -31,15 +31,15 @@ public class JeuShell {
 					newPos = courant.joueTour(partie.getDe1(), partie.getDe2());
 					partie.occupeCase(newPos, courant);
 					if (partie.getP().getCases(newPos) instanceof CasesSaut) {
-						if ((partie.getP().getCases(newPos) instanceof CasesNeuf))
-							((CasesNeuf)partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
-						} else
-							((CasesSaut)partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
-					}
-					else if (partie.getP().getCases(newPos) instanceof CasesAttente) {
+						if ((partie.getP().getCases(newPos) instanceof CasesNeuf)) {
+							((CasesNeuf) partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
+						} else {
+							((CasesSaut) partie.getP().getCases(newPos)).deplacementSaut(newPos, courant, partie);
+						}
+					} else if (partie.getP().getCases(newPos) instanceof CasesAttente) {
 						courant.setLibre(false);
 						if (partie.getP().getCases(newPos) instanceof CasesHotel) {
-							((CasesHotel)partie.getP().getCases(newPos)).setDebut(partie.getTourActuel());
+							((CasesHotel) partie.getP().getCases(newPos)).setDebut(partie.getTourActuel());
 						}
 					}
 				}

@@ -72,11 +72,6 @@ public class Partie {
 		return true;
 	}
 	
-	public void deplacementSaut(int posCour, int newPos, Joueur participant) {
-		posCour = newPos;
-		this.libereCase(posCour);
-		newPos = ((CasesSaut) this.getP().getCases(newPos)).getDest();
-		this.occupeCase(newPos, participant);
-	}
+	
 
 }
