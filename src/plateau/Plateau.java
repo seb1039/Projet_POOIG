@@ -1,50 +1,33 @@
 package plateau;
 
-public class Plateau {
+public abstract class Plateau {
 	
-	private final Cases[] plateau;
+	protected final Cases[] plateau;
+	protected final int taille;
 	
-	//Constructeur
-	public Plateau() {
-		plateau = new Cases[64];
-		for (int i = 0; i < 64; i++) {
-			if ((i + 1) % 9 == 0 && i != 9) {
-				plateau[i] = new CasesRejouer();
-			} else if (i == 9){
-				plateau[i] = new CasesNeuf();
-			}
-			else if (i == 6){
-				plateau[i] = new CasesSaut(12);
-			}
-			else if (i == 19){
-				plateau[i] = new CasesHotel();
-			}
-			else if (i == 31){
-				plateau[i] = new CasesLiberation();
-			}
-			else if (i == 42){
-				plateau[i] = new CasesSaut(30);
-			}
-			else if (i == 52){
-				plateau[i] = new CasesLiberation();
-			}
-			else if (i == 58){
-				plateau[i] = new CasesSaut(1);
-			}
-			else{
-				plateau[i] = new CasesNormales();
-			}
-		}
+	
+	public Plateau(int taille) {
+		this.taille = taille;
+		this.plateau = new Cases[taille+1];
 	}
 	
-	public boolean estfini(){
-		return plateau[63].estOccupee();
-	}
+	public abstract boolean estfini();
 	
 	//Accesseur
 	public Cases getCases(int i){
 		return plateau[i];
 	}
 	
+	public int getTaille(){
+		return this.taille;
+	}
+	
+	public String toString(){
+		String s="";
+		for(int i=0; i<taille+1; i++){
+			s+="[ " +i +" " +this.plateau[i].toString() +" ]";
+		}
+		return s;
+	}
 
 }

@@ -1,19 +1,20 @@
 package plateau;
 
+import joueur.Pion;
+
 public abstract class Cases {
 	
-	private Joueur occupant;
+	private Pion occupant;
+	//private String question;
+
 	
-	
-	//Constructeur
-	public Cases(){};
 	
 	//Accesseurs
-	public void setOccupant(Joueur occupant) {
+	public void setOccupant(Pion occupant) {
 		this.occupant = occupant;
 	}
 	
-	public Joueur getOccupant() {
+	public Pion getOccupant() {
 		return occupant;
 	}
 
@@ -21,9 +22,16 @@ public abstract class Cases {
 	public boolean estOccupee(){
 		return this.occupant!=null;
 	}
+	
+	
 
 	
 	public abstract boolean estSpeciale();
+	
+	//Affichage
+	public String toString(){
+		return ((this.occupant == null) ? "  " : this.occupant.toString());
+	}
 
 	
 

@@ -1,6 +1,9 @@
 package plateau;
 
-import jeu.Partie;
+import jeu.PartieOie;
+import jeu.PartieOie1;
+import joueur.Joueur;
+import joueur.Pion;
 
 public class CasesNeuf extends CasesSaut {
 
@@ -15,14 +18,16 @@ public class CasesNeuf extends CasesSaut {
 		return this.destpremtour;
 	}
 
-	public void deplacementSaut(int newPos, Joueur participant, Partie p) {
-		if (p.getTourActuel() == 1) {
+	public void deplacementSaut(int newPos, Pion participant, PartieOie partieOie) {
+		if (partieOie.getTourActuel() == 1) {
 			int posCour = newPos;
-			p.libereCase(posCour);
-			if (p.getDe1().getDe() == 3 || p.getDe2().getDe() == 3) {
-				p.occupeCase(super.getDest(), participant);
+			partieOie.libereCase(posCour);
+			if (partieOie.getDe1().getDe() == 3 || partieOie.getDe2().getDe() == 3) {
+				partieOie.setOccupantCases(super.getDest(), participant);
+				participant.setPosition(super.getDest());
 			} else {
-				p.occupeCase(destpremtour, participant);
+				partieOie.setOccupantCases(destpremtour, participant);
+				participant.setPosition(destpremtour);
 			}
 		}
 	}
