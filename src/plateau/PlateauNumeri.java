@@ -71,6 +71,10 @@ public class PlateauNumeri extends Plateau{
 			}
 		}
 
+		/**
+		 * @return true si les 3 dernières cases sont occupés
+		 * @see plateau.Plateau#estfini()
+		 */
 		@Override
 		public boolean estfini() {
 			return plateau[this.taille].estOccupee() && plateau[this.taille-1].estOccupee() && plateau[this.taille-2].estOccupee();

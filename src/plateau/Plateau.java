@@ -11,6 +11,9 @@ public abstract class Plateau {
 		this.plateau = new Cases[taille+1];
 	}
 	
+	/**
+	 * @return true si la partie est finie
+	 */
 	public abstract boolean estfini();
 	
 	//Accesseur

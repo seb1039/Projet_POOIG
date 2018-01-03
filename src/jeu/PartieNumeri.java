@@ -8,6 +8,10 @@ import joueur.JoueurNumeri;
 import joueur.Pion;
 import plateau.*;
 
+/**
+ * @author seb
+ *
+ */
 public class PartieNumeri extends Partie {
 
 	protected LinkedList<JoueurNumeri> participants;
@@ -36,10 +40,22 @@ public class PartieNumeri extends Partie {
 	}
 
 	// Ajouter des participants
+	/**
+	 * @param j
+	 *            joueur souhaitant rejoindre la partie
+	 * @return true si l'ajout a été effectué
+	 */
 	public boolean addParticipants(JoueurNumeri j) {
 		return this.participants.add(j);
 	}
 
+	/**
+	 * Initialise la partie de Numeri (A METTRE DANS LA CLASSE PARTIE? )
+	 * 
+	 * @param sc
+	 *            Scanner du main (A L'HEURE ACTUELLE)
+	 * 
+	 */
 	public void initialisation(Scanner sc) {
 		boolean continuer;
 		do {
@@ -53,6 +69,10 @@ public class PartieNumeri extends Partie {
 		this.de = new De(sc.nextInt());
 	}
 
+	/**
+	 * @param joueur
+	 * @return tableau de String contenant la combinaison choisie
+	 */
 	public String[] jouer(JoueurNumeri joueur) {
 		return joueur.joueTour(this.getDe());
 	}
@@ -62,28 +82,27 @@ public class PartieNumeri extends Partie {
 		Cases tmp;
 		Pion pionCour;
 		do {
-			int newPos;
+			int newPos, posCour;
 			JoueurNumeri courant = it.next();
 			String[] joue = this.jouer(courant);
 			for (String i : joue) {
 				if (Integer.parseInt(i) > 0) {
 					pionCour = courant.getMesPions()[Integer.parseInt(i) - 1];
-					if (pionCour.getPosition() != -1) {
-						this.libereCase(pionCour.getPosition());
-						tmp = p.getCases(pionCour.getPosition() + 1);
-					} else if (newPos == 1)
-						this.libereCase(newPos - 1);
+					posCour = pionCour.getPosition();
+					if (posCour != -1) {
+						this.libereCase(posCour);
+						tmp = p.getCases(posCour + 1);
+					}
 					else {
 						tmp = p.getCases(0);
 					}
-					while (tmp.estOccupee()) {
+					do {
 						newPos = pionCour.seDeplacer(1);
 						if (newPos <= this.p.getTaille()) {
 							tmp = this.getP().getCases(newPos);
 						}
-
 						System.out.println("newPos : " + newPos);
-					}
+					} while (tmp.estOccupee());
 					tmp.setOccupant(pionCour);
 				}
 			}

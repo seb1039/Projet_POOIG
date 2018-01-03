@@ -7,38 +7,63 @@ import plateau.De;
 
 public class JoueurNumeri extends Joueur {
 
-	
 	private Propositions propositions;
 
 	public JoueurNumeri(String nom) {
 		super(nom);
 		super.mesPions = new Pion[6];
-		for(int i = 1; i<= 6 ; i++){
-			mesPions[i-1] = new Pion(i,this);
+		for (int i = 1; i <= 6; i++) {
+			mesPions[i - 1] = new Pion(i, this);
 		}
 	}
-	
+
+	/**
+	 * @param d
+	 *            Dé de la partie
+	 * @return tableau de String contenant la combinaison choisie
+	 */
 	public String[] joueTour(De d) {
 		int i = lanceDe(d);
 		return this.gestionPropositions(i);
-	//	String[] pionsADeplacer = this.gestionPropositions(i);
-	//	this.seDeplacer(pionsADeplacer);
+		// String[] pionsADeplacer = this.gestionPropositions(i);
+		// this.seDeplacer(pionsADeplacer);
 	}
-	
-	public void seDeplacer(String[] pionsADeplacer){
-		for(String s : pionsADeplacer){
+
+	/**
+	 * Déplace chaque pion dont les indices sont dans le tableau
+	 * 
+	 * @param pionsADeplacer
+	 *            tableau de String contenant la combinaison choisie
+	 */
+	public void seDeplacer(String[] pionsADeplacer) {
+		for (String s : pionsADeplacer) {
 			int ind = Integer.parseInt(s);
 			mesPions[ind].seDeplacer(1);
 		}
 	}
 
+	/**
+	 * Affiche les propositions de coups possibles <br/>
+	 * Demande au joueur de choisir la proposition acceptée
+	 * 
+	 * @param i
+	 *            indice de la proposition choisie par le joueur
+	 * @return tableau de String contenant la combinaison choisie
+	 * @see JoueurNumeri#choixPropositions
+	 * @see JoueurNumeri#afficherPropositions(int)
+	 */
 	public String[] gestionPropositions(int i) {
 		this.afficherPropositions(i);
 		int indice = this.choixPropositions();
 		return this.propositions.getProposition(indice - 1);
 	}
 
-	//return l'indice de la combinaison choisie
+	/**
+	 * Demande au joueur la combinaison qu'il souhaite
+	 * 
+	 * @return l'indice de la combinaison choisie
+	 * @see JoueurNumeri#gestionPropositions
+	 */
 	private int choixPropositions() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Quelle combinaison voulez-vous déplacer ? ");
@@ -46,6 +71,13 @@ public class JoueurNumeri extends Joueur {
 		return choix;
 	}
 
+	/**
+	 * Affiche les différentes propositions de coups possibles
+	 * 
+	 * @param i
+	 *            la taille du dé utilisé
+	 * @see JoueurNumeri#gestionPropositions
+	 */
 	public void afficherPropositions(int i) {
 		this.propositions = new Propositions(i);
 		System.out.println(propositions.toString());
@@ -60,7 +92,12 @@ public class JoueurNumeri extends Joueur {
 			this.generationProposition(i);
 		}
 
-		// On limite le nombre de pions déplaçables simultanément à 3
+		/**
+		 * Génère toutes les combinaisons possibles. <br/>
+		 * On limite le nombre de pions déplaçables simultanément à 3
+		 * @param i
+		 *            la taille du dé utilisé
+		 */
 		private void generationProposition(int i) {
 			if (i < 6) {
 				for (int j = 0; j <= i / 2 + 1; j++) {
@@ -76,16 +113,15 @@ public class JoueurNumeri extends Joueur {
 					}
 				}
 		}
-	
-		
-		private String[] getProposition(int i){
+
+		private String[] getProposition(int i) {
 			return propositions.get(i).split(" ");
 		}
 
 		public String toString() {
 			String rep = "";
 			for (int i = 0; i < propositions.size(); i++)
-				rep += (i+1) + ")" + propositions.get(i) + "\n";
+				rep += (i + 1) + ")" + propositions.get(i) + "\n";
 			return rep;
 		}
 

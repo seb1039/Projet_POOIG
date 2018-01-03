@@ -18,6 +18,10 @@ public class De {
 		return this.de;
 	}
 	
+	/**
+	 * Génère un nouveau nombre aléatoire entre 1 et max
+	 * @see Random#nextInt(int)
+	 */
 	public void nouveauLancer(){
 		de = 1 + n.nextInt(max);
 	}

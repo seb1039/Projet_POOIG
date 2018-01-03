@@ -18,6 +18,10 @@ public class CasesNeuf extends CasesSaut {
 		return this.destpremtour;
 	}
 
+	/**
+	 * Adaptation de la même méthode écrit dans la classe CasesSaut
+	 * @see plateau.CasesSaut#deplacementSaut(int, joueur.Pion, jeu.PartieOie)
+	 */
 	public void deplacementSaut(int newPos, Pion participant, PartieOie partieOie) {
 		if (partieOie.getTourActuel() == 1) {
 			int posCour = newPos;

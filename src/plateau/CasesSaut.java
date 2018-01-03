@@ -1,6 +1,5 @@
 package plateau;
 import jeu.*;
-import joueur.Joueur;
 import joueur.Pion;
 
 public class CasesSaut extends CasesSpeciales {
@@ -16,6 +15,14 @@ public class CasesSaut extends CasesSpeciales {
 		return this.dest;
 	}
 	
+	/**
+	 * @param newPos
+	 * 				La position actuelle du pion
+	 * @param participant
+	 * 				Le pion fraîchement débarqué
+	 * @param partieOie
+	 * 				La partie associé à cette case
+	 */
 	public void deplacementSaut(int newPos, Pion participant, PartieOie partieOie) {
 		int posCour = newPos;
 		partieOie.libereCase(posCour);

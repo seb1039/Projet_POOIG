@@ -19,13 +19,17 @@ public abstract class Joueur {
 	public String getNom() {
 		return nom;
 	}
-
-	
 	
 	public Pion[] getMesPions() {
 		return mesPions;
 	}
 
+	/**
+	 * @param d
+	 * 			Le dé de la partie en cours
+	 * @return
+	 * 			la valeur du dé
+	 */
 	protected int lanceDe(De d){
 		d.nouveauLancer();
 		return d.getDe();

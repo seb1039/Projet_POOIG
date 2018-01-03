@@ -15,9 +15,6 @@ public class Pion {
 		this.j = joueur;
 	}
 
-	public int seDeplacer(int i) {
-		return this.position += i;
-	}
 
 	public int getScorePion() {
 		return scorePion;
@@ -41,6 +38,15 @@ public class Pion {
 
 	public Joueur getJ() {
 		return j;
+	}
+	
+	/**
+	 * @param i
+	 * 			Le taille pas du pion à affectuer
+	 * @return La position finale du pion
+	 */
+	public int seDeplacer(int i) {
+		return this.position += i;
 	}
 
 	public String toString(){

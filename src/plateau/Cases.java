@@ -26,6 +26,9 @@ public abstract class Cases {
 	
 
 	
+	/**
+	 * @return true si la case est spéciale
+	 */
 	public abstract boolean estSpeciale();
 	
 	//Affichage

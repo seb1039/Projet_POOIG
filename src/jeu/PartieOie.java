@@ -61,18 +61,30 @@ public abstract class PartieOie extends Partie {
 		return this.de2;
 	}
 
-	// Incrémentation du numéro du tour actuel
+	/**
+	 * Incrémente le numéro du tour actuel
+	 */
 	public void incrementTour() {
 		this.tourActuel++;
 	}
 
-	// Ajouter des participants
+	/**
+	 * @param j
+	 *            joueur souhaitant rejoindre la partie
+	 * @return true si l'ajout a été effectué
+	 */
 	public boolean addParticipants(JoueurOie j) {
 		return this.participants.add(j);
 	}
 
 	
-
+	/**
+	 * Initialise la partie de Numeri (A METTRE DANS LA CLASSE PARTIE? )
+	 * 
+	 * @param sc
+	 *            Scanner du main (A L'HEURE ACTUELLE)
+	 * 
+	 */
 	public void initialisation(Scanner sc) {
 		boolean continuer;
 		do {
@@ -123,10 +135,20 @@ public abstract class PartieOie extends Partie {
 		return newPos;
 	}
 **/
+	/**
+	 * @param i
+	 *            indice de la case à occuper
+	 * @param pion
+	 *            pion à placer
+	 */
 	public void setOccupantCases(int i, Pion pion) {
 		p.getCases(i).setOccupant(pion);
 	}
 
+	/**
+	 * @param joueur JoueurOie qui est en train de jouer
+	 * @return nouvelle position du pion du joueur
+	 */
 	public int jouer(JoueurOie joueur){
 		Pion pion = joueur.getMesPions()[0];
 		this.libereCase(pion.getPosition());
@@ -150,8 +172,10 @@ public abstract class PartieOie extends Partie {
 		return newPos;
 	}
 
+	/* (non-Javadoc)
+	 * @see jeu.Partie#deroulement()
+	 */
 	@Override
-	// Déplacement suivant positions/cases
 	public void deroulement() {
 		ListIterator<JoueurOie> it = this.getParticipants().listIterator();
 		this.incrementTour();
@@ -196,5 +220,12 @@ public abstract class PartieOie extends Partie {
 
 	
 
+	/**
+	 * @param posCour
+	 *            indice de la position courante
+	 * @param des
+	 *            valeur des dés de la partie
+	 * @return la position retenue par le jeu selon la variante
+	 */
 	public abstract int finDuJeu(int posCour, int des);
 }

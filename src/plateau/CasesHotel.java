@@ -14,6 +14,10 @@ public class CasesHotel extends CasesAttente {
 		this.debut = debut;
 	}
 
+	/**
+	 * @param tourActuel
+	 * @return true si le joueur a suffisamment patienté
+	 */
 	public boolean libere(int tourActuel) {
 		return tourActuel - debut >= wait;
 	}
