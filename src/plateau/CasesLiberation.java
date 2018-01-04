@@ -1,7 +1,6 @@
 package plateau;
 
 import jeu.*;
-import joueur.Joueur;
 import joueur.Pion;
 
 public class CasesLiberation extends CasesAttente {

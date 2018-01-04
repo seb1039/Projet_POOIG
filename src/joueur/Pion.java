@@ -1,5 +1,7 @@
 package joueur;
 
+import plateau.Plateau;
+
 public class Pion {
 
 	private int scorePion;
@@ -7,18 +9,18 @@ public class Pion {
 	private int position;
 	private boolean libre;
 	private Joueur j;
+	private Plateau p;
 
-	public Pion(int numero, Joueur joueur) {
+	public Pion(int numero, Joueur joueur, Plateau plateau) {
 		this.position = -1;
 		this.numero = numero;
 		this.libre = true;
 		this.j = joueur;
+		this.p=plateau;
 	}
 
 
-	public int getScorePion() {
-		return scorePion;
-	}
+	
 
 	public int getPosition() {
 		return position;
@@ -38,6 +40,12 @@ public class Pion {
 
 	public Joueur getJ() {
 		return j;
+	}
+	
+	public int calculScore() {
+		if(this.position != -1)
+		this.scorePion = this.numero * this.p.getCases(this.position).getScoreCase();
+		return this.scorePion;
 	}
 	
 	/**

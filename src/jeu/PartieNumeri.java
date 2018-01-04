@@ -2,7 +2,10 @@ package jeu;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import joueur.JoueurNumeri;
 import joueur.Pion;
@@ -58,15 +61,19 @@ public class PartieNumeri extends Partie {
 	 */
 	public void initialisation(Scanner sc) {
 		boolean continuer;
+		int max;
 		do {
 			System.out.println("Qui veut jouer?");
-			this.addParticipants(new JoueurNumeri(sc.nextLine()));
+			this.addParticipants(new JoueurNumeri(sc.nextLine(), this.p));
 			System.out.println("Quelqu'un d'autre?");
 			String s = sc.nextLine();
 			continuer = (s.equals("oui"));
 		} while (continuer);
-		System.out.println("Quelle est la valeur maximale (entre 6 et 15) du dé que vous désirez ?");
-		this.de = new De(sc.nextInt());
+		do {
+			System.out.println("Quelle est la valeur maximale (entre 6 et 15) du dé que vous désirez ?");
+			max = sc.nextInt();
+		} while (max > 15 || max < 6);
+		this.de = new De(max);
 	}
 
 	/**
@@ -83,6 +90,7 @@ public class PartieNumeri extends Partie {
 		Pion pionCour;
 		do {
 			int newPos, posCour;
+			boolean flag = false;
 			JoueurNumeri courant = it.next();
 			String[] joue = this.jouer(courant);
 			for (String i : joue) {
@@ -91,23 +99,53 @@ public class PartieNumeri extends Partie {
 					posCour = pionCour.getPosition();
 					if (posCour != -1) {
 						this.libereCase(posCour);
-						tmp = p.getCases(posCour + 1);
-					}
-					else {
+						try {
+							tmp = p.getCases(posCour + 1);
+						} catch (ArrayIndexOutOfBoundsException e) {
+							tmp = p.getCases(posCour);
+							flag = true;
+						}
+					} else {
 						tmp = p.getCases(0);
 					}
-					do {
-						newPos = pionCour.seDeplacer(1);
-						if (newPos <= this.p.getTaille()) {
-							tmp = this.getP().getCases(newPos);
-						}
-						System.out.println("newPos : " + newPos);
-					} while (tmp.estOccupee());
+					if (!flag && (posCour == -1 || (posCour != -1 && peutSeDeplacer(posCour))))
+						do {
+							newPos = pionCour.seDeplacer(1);
+							if (newPos <= this.p.getTaille()) {
+								tmp = this.getP().getCases(newPos);
+							} else {
+								break;
+							}
+						} while (tmp.estOccupee());
 					tmp.setOccupant(pionCour);
 				}
 			}
-
 		} while (it.hasNext());
 	}
+	
+	public void finPartie() {
+		for(JoueurNumeri j : this.participants) {
+			j.calculScore();
+		}
+		this.afficheClassement();
+	}
 
+	private void afficheClassement() {
+		String rep = "";
+		SortedMap<Integer, String> classement = new TreeMap<>();
+		for (JoueurNumeri j: this.participants)
+			classement.put(j.getScore(), j.getNom());
+		System.out.println(classement);		
+	}
+
+	private boolean peutSeDeplacer(int position) {
+		if (position == 39)
+			return false;
+		for (int i = position + 1; i < p.getTaille(); i++) {
+			if (!p.getCases(i).estOccupee())
+				return true;
+
+		}
+		return false;
+	}
 }

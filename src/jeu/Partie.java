@@ -1,5 +1,7 @@
 package jeu;
 
+import java.util.Scanner;
+
 import plateau.Plateau;
 
 
@@ -15,6 +17,7 @@ public abstract class Partie {
 		return p.estfini();
 	}
 
+	
 	/**
 	 * Libère la case dont l'indice est en argument
 	 * @param pos
@@ -22,6 +25,7 @@ public abstract class Partie {
 	 * 
 	 */
 	public void libereCase(int pos) {
+		if (pos != -1)
 		p.getCases(pos).setOccupant(null);
 	}
 	
@@ -36,4 +40,5 @@ public abstract class Partie {
 	 */
 	public abstract void deroulement();
 	public abstract Plateau getP();
+	public abstract void initialisation(Scanner sc);
 }

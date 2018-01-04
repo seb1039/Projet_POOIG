@@ -7,66 +7,66 @@ public class PlateauNumeri extends Plateau{
 			super(39);
 			for (int i = 0; i < taille+1; i++) {
 				if (i>=0 && i<=2) {
-					plateau[i] = new CasesScore(-3);
+				plateau[i] = new Cases(-3);
 				} else if (i==3 || i==4){
-					plateau[i] = new CasesScore(-2);
+					plateau[i] = new Cases(-2);
 				}
 				else if (i==5 || i==6 ){
-					plateau[i] = new CasesScore(-1);
+					plateau[i] = new Cases(-1);
 				}
 				else if (i == 9){
-					plateau[i] = new CasesScore(1);
+					plateau[i] = new Cases(1);
 				}
 				else if (i == 12){
-					plateau[i] = new CasesScore(2);
+					plateau[i] = new Cases(2);
 				}
 				else if (i == 14){
-					plateau[i] = new CasesScore(3);
+					plateau[i] = new Cases(3);
 				}
 				else if (i == 16){
-					plateau[i] = new CasesScore(4);
+					plateau[i] = new Cases(4);
 				}
 				else if (i == 18){
-					plateau[i] = new CasesScore(5);
+					plateau[i] = new Cases(5);
 				}
 				else if (i == 19){
-					plateau[i] = new CasesScore(6);
+					plateau[i] = new Cases(6);
 				}
 				else if (i == 22){
-					plateau[i] = new CasesScore(7);
+					plateau[i] = new Cases(7);
 				}
 				else if (i == 25){
-					plateau[i] = new CasesScore(8);
+					plateau[i] = new Cases(8);
 				}
 				else if (i == 27){
-					plateau[i] = new CasesScore(9);
+					plateau[i] = new Cases(9);
 				}
 				else if (i == 28){
-					plateau[i] = new CasesScore(10);
+					plateau[i] = new Cases(10);
 				}
 				else if (i == 30){
-					plateau[i] = new CasesScore(11);
+					plateau[i] = new Cases(11);
 				}
 				else if (i == 31){
-					plateau[i] = new CasesScore(12);
+					plateau[i] = new Cases(12);
 				}
 				else if (i == 33){
-					plateau[i] = new CasesScore(13);
+					plateau[i] = new Cases(13);
 				}
 				else if (i == 34){
-					plateau[i] = new CasesScore(15);
+					plateau[i] = new Cases(15);
 				}
 				else if (i == 36){
-					plateau[i] = new CasesScore(20);
+					plateau[i] = new Cases(20);
 				}
 				else if (i == 37){
-					plateau[i] = new CasesScore(25);
+					plateau[i] = new Cases(25);
 				}
 				else if (i == 39){
-					plateau[i] = new CasesScore(30);
+					plateau[i] = new Cases(30);
 				}
 				else{
-					plateau[i] = new CasesScore(0);
+					plateau[i] = new Cases(0);
 				}
 			}
 		}

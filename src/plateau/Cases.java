@@ -2,12 +2,15 @@ package plateau;
 
 import joueur.Pion;
 
-public abstract class Cases {
+public class Cases {
 	
 	private Pion occupant;
+	private final int scoreCase;
 	//private String question;
 
-	
+	public Cases(int scoreCase) {
+		this.scoreCase = scoreCase;
+	}
 	
 	//Accesseurs
 	public void setOccupant(Pion occupant) {
@@ -16,6 +19,10 @@ public abstract class Cases {
 	
 	public Pion getOccupant() {
 		return occupant;
+	}
+	
+	public int getScoreCase() {
+		return scoreCase;
 	}
 
 	//Regarde si la case est occupée
@@ -29,7 +36,9 @@ public abstract class Cases {
 	/**
 	 * @return true si la case est spéciale
 	 */
-	public abstract boolean estSpeciale();
+	public boolean estSpeciale() {
+		return false;
+	}
 	
 	//Affichage
 	public String toString(){

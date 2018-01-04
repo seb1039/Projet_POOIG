@@ -1,8 +1,6 @@
 package plateau;
 
 import jeu.PartieOie;
-import jeu.PartieOie1;
-import joueur.Joueur;
 import joueur.Pion;
 
 public class CasesNeuf extends CasesSaut {

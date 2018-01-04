@@ -4,17 +4,36 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import plateau.De;
+import plateau.Plateau;
 
 public class JoueurNumeri extends Joueur {
 
 	private Propositions propositions;
+	private int score;
 
-	public JoueurNumeri(String nom) {
-		super(nom);
+	public JoueurNumeri(String nom, Plateau plateau) {
+		super(nom, plateau);
+		this.score = 0;
 		super.mesPions = new Pion[6];
 		for (int i = 1; i <= 6; i++) {
-			mesPions[i - 1] = new Pion(i, this);
+			mesPions[i - 1] = new Pion(i, this, plateau);
 		}
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * Calcul du Score du Joueur courant score = sommes(pion.score)
+	 */
+	public int calculScore() {
+		int score = 0;
+		for (Pion p : mesPions) {
+			score += p.calculScore();
+		}
+		this.score = score;
+		return this.score;
 	}
 
 	/**
@@ -54,8 +73,19 @@ public class JoueurNumeri extends Joueur {
 	 */
 	public String[] gestionPropositions(int i) {
 		this.afficherPropositions(i);
-		int indice = this.choixPropositions();
-		return this.propositions.getProposition(indice - 1);
+		String[] rep = new String[1];
+		boolean flag;
+		int indice = 0;
+		do {
+			indice = this.choixPropositions();
+			try {
+				rep = this.propositions.getProposition(indice - 1);
+				flag = false;
+			} catch (PropositionIncorrecteException e) {
+				flag = true;
+			}
+		} while (flag);
+		return rep;
 	}
 
 	/**
@@ -64,10 +94,22 @@ public class JoueurNumeri extends Joueur {
 	 * @return l'indice de la combinaison choisie
 	 * @see JoueurNumeri#gestionPropositions
 	 */
-	private int choixPropositions() {
+	private Integer choixPropositions() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Quelle combinaison voulez-vous déplacer ? ");
-		int choix = sc.nextInt();
+		boolean flag;
+		String rep;
+		Integer choix = 0;
+		do {
+
+			System.out.println(super.toString() + ", quelle combinaison voulez-vous déplacer ? ");
+			rep = sc.next();
+			try {
+				choix = Integer.parseInt(rep);
+				flag = false;
+			} catch (NumberFormatException nb) {
+				flag = true;
+			}
+		} while (flag);
 		return choix;
 	}
 
@@ -95,6 +137,7 @@ public class JoueurNumeri extends Joueur {
 		/**
 		 * Génère toutes les combinaisons possibles. <br/>
 		 * On limite le nombre de pions déplaçables simultanément à 3
+		 * 
 		 * @param i
 		 *            la taille du dé utilisé
 		 */
@@ -114,8 +157,11 @@ public class JoueurNumeri extends Joueur {
 				}
 		}
 
-		private String[] getProposition(int i) {
-			return propositions.get(i).split(" ");
+		private String[] getProposition(int i) throws PropositionIncorrecteException {
+			if (i < 0 || i >= propositions.size())
+				throw new PropositionIncorrecteException();
+			else
+				return propositions.get(i).split(" ");
 		}
 
 		public String toString() {

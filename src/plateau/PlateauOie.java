@@ -4,9 +4,9 @@ public class PlateauOie extends Plateau {
 
 	// Constructeur
 	public PlateauOie() {
-		super(64);
+		super(63);
 		for (int i = 0; i < taille + 1; i++) {
-			if ((i) % 9 == 0 && i != 9) {
+			if ((i) % 9 == 0 && i != 9 && i != 63) {
 				plateau[i] = new CasesRejouer();
 			} else if (i == 9) {
 				plateau[i] = new CasesNeuf();
