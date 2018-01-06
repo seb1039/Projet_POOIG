@@ -2,7 +2,6 @@ package jeu;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
