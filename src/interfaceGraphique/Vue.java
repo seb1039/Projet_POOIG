@@ -17,63 +17,65 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-
 public class Vue extends JFrame {
-	
-	private JPanel panel;
+
 	private JMenuBar menu;
 	private JPlateau plateau;
 	private Button nvTour;
-	
+
 	private Container container;
 	private Controleur controleur;
 	private Modele modele;
 
 	public Vue() {
-		
-		
-		//Controleur et Container
+
+		// Controleur et Container
+		modele = new Modele();
 		controleur = new Controleur(this.modele, this);
 		container = this.getContentPane();
-		
-		//Création du Layout
+
+		// Création du Layout
 		setLayout(new BorderLayout());
-		
-		//Création de la Barre de Menu
+
+		// Création de la Barre de Menu
 		JMenuItem exit = new JMenuItem("Exit");
-		exit.addActionListener(event ->
-		{
+		exit.addActionListener(event -> {
 			System.exit(JFrame.EXIT_ON_CLOSE);
 		});
 		JMenu file = new JMenu("File");
 		JMenuItem newGame = new JMenuItem("New Game");
-		newGame.addActionListener(event ->
-		{
-			new NouvellePartie();
+		newGame.addActionListener(event -> {
+			new NouvellePartie(this.modele);
 		});
 		file.add(newGame);
 		file.add(exit);
 		this.menu = new JMenuBar();
 		menu.add(file);
-		menu.setMaximumSize(new Dimension(1080, 20));
-		
+
 		// Bouton Nouveau Tour
-		this.nvTour = new  Button("Nouveau Tour");
-		
-		
+		this.nvTour = new Button("Nouveau Tour");
+		this.nvTour.addActionListener(controleur);
+
 		// Remplissage de l'IG
-		this.plateau = new JPlateau();
+		this.plateau = new JPlateau(this.modele);
 		setJMenuBar(menu);
 		add(this.plateau);
-		add(this.nvTour,BorderLayout.SOUTH);
-		
-		//Paramétrage de la fenêtre
+		add(this.nvTour, BorderLayout.SOUTH);
+
+		// Paramétrage de la fenêtre
 		setTitle("Jeu de l'Oie et Numeri");
-		setSize(new Dimension(320, 320));
+		setSize(new Dimension(800, 500));
 		setMaximumSize(new Dimension(1920, 1080));
-		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public JPlateau getPlateau(){
+		return this.plateau;
+	}
+	
+	public void majPlateau(){
+		plateau.majPlateau();
 	}
 
 	public static void main(String[] args) {

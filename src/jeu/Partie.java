@@ -41,4 +41,5 @@ public abstract class Partie {
 	public abstract void deroulement();
 	public abstract Plateau getP();
 	public abstract void initialisation(Scanner sc);
+	public abstract void initialisation(String[] nomsDesJoueurs);
 }

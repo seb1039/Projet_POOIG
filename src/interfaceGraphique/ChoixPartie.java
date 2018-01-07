@@ -9,14 +9,14 @@ import javax.swing.JTextArea;
 
 public class ChoixPartie extends JPanel{
 
-	private String type;
 	private String[] choix = {"Partie Oie 1","Partie Oie 2","Partie Oie 3","Partie Numeri"}; 
+	private JComboBox<String> nom;
 	
 	public ChoixPartie(){
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS)); 
 		
-		JComboBox<String> nom = new JComboBox<>(choix);
+		this.nom = new JComboBox<>(choix);
 		nom.setEditable(false);
 		nom.setMaximumRowCount(4);
 		
@@ -26,6 +26,11 @@ public class ChoixPartie extends JPanel{
 		
 		add(typeDePartie);
 		add(nom);
+		setVisible(true);
+	}
+	
+	public String getSelectedItem(){
+		return (String) this.nom.getSelectedItem();
 	}
 
 }

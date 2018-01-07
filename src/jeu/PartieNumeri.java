@@ -75,6 +75,17 @@ public class PartieNumeri extends Partie {
 		this.de = new De(max);
 	}
 
+	public void initialisation(String[] nomsDesJoueurs) {
+		boolean continuer;
+		for (String tmp : nomsDesJoueurs)
+			this.addParticipants(new JoueurNumeri(tmp, this.p));
+		this.de = new De(15);
+	}
+	
+	public void setValMaxDe(int valMax){
+		this.de.setMax(valMax);
+	}
+
 	/**
 	 * @param joueur
 	 * @return tableau de String contenant la combinaison choisie
@@ -121,9 +132,9 @@ public class PartieNumeri extends Partie {
 			}
 		} while (it.hasNext());
 	}
-	
+
 	public void finPartie() {
-		for(JoueurNumeri j : this.participants) {
+		for (JoueurNumeri j : this.participants) {
 			j.calculScore();
 		}
 		this.afficheClassement();
@@ -132,9 +143,9 @@ public class PartieNumeri extends Partie {
 	private void afficheClassement() {
 		String rep = "";
 		SortedMap<Integer, String> classement = new TreeMap<>();
-		for (JoueurNumeri j: this.participants)
+		for (JoueurNumeri j : this.participants)
 			classement.put(j.getScore(), j.getNom());
-		System.out.println(classement);		
+		System.out.println(classement);
 	}
 
 	private boolean peutSeDeplacer(int position) {

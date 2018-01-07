@@ -1,9 +1,11 @@
 package interfaceGraphique;
 
-import javax.swing.event.ChangeEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.event.ChangeListener;
 
-public class Controleur implements ChangeListener {
+public class Controleur implements ActionListener{
 	
 	private Modele modele;
 	private Vue vue;
@@ -15,9 +17,12 @@ public class Controleur implements ChangeListener {
 		
 	}
 
-	@Override
-	public void stateChanged(ChangeEvent arg0) {
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		modele.deroulement();
+		vue.majPlateau();
+		
 	}
 
 }

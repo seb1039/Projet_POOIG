@@ -5,7 +5,7 @@ import java.util.Random;
 public class De {
 	
 	private int de;
-	private final int max;
+	private int max;
 	private Random n;
 	
 	public De(int max){
@@ -16,6 +16,10 @@ public class De {
 	
 	public int getDe(){
 		return this.de;
+	}
+	
+	public void setMax(int max){
+		this.max = max;
 	}
 	
 	/**

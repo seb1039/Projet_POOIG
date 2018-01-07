@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+import joueur.JoueurNumeri;
 import joueur.JoueurOie;
 import joueur.Pion;
 import plateau.Cases;
@@ -92,6 +93,12 @@ public abstract class PartieOie extends Partie {
 			continuer = (s.equals("oui"));
 
 		} while (continuer);
+	}
+	
+	public void initialisation(String[] nomsDesJoueurs) {
+		boolean continuer;
+		for (String tmp : nomsDesJoueurs)
+			this.addParticipants(new JoueurOie(tmp, this.p));
 	}
 
 	public void afficheGagnant(){
