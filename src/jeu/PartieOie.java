@@ -172,7 +172,7 @@ public abstract class PartieOie extends Partie {
 	 * @see jeu.Partie#deroulement()
 	 */
 	@Override
-	public void deroulement() {
+	public void deroulement() throws PartieNullException{
 		ListIterator<JoueurOie> it = this.getParticipants().listIterator();
 		this.incrementTour();
 		Cases tmp;
@@ -183,8 +183,9 @@ public abstract class PartieOie extends Partie {
 			// Si la position du joueur est la case hotel, alors
 			// courant.libre(cases.libere)
 			if (tousLesJoueursPieges()) {
-				System.out.println("Tout le monde a perdu");
-				continue;
+				throw new PartieNullException();
+			//	System.out.println("Tout le monde a perdu");
+			//	continue;
 			}
 			if (!pionCour.estLibre())
 				if (this.getP().getCases(pionCour.getPosition()) instanceof CasesHotel) {

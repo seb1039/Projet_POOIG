@@ -6,12 +6,12 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class JPlateau extends JPanel {
+public class JPlateauOie extends JPanel {
 	
 	private JCases[] plateau;
 	private Modele modele;
 
-	public JPlateau(Modele modele) {
+	public JPlateauOie(Modele modele) {
 		super();
 		this.modele = modele;
 		GridLayout gl = new GridLayout(8, 8);

@@ -20,7 +20,7 @@ import javax.swing.JTextPane;
 public class Vue extends JFrame {
 
 	private JMenuBar menu;
-	private JPlateau plateau;
+	private JPlateauOie plateau;
 	private Button nvTour;
 
 	private Container container;
@@ -57,7 +57,7 @@ public class Vue extends JFrame {
 		this.nvTour.addActionListener(controleur);
 
 		// Remplissage de l'IG
-		this.plateau = new JPlateau(this.modele);
+		this.plateau = new JPlateauOie(this.modele);
 		setJMenuBar(menu);
 		add(this.plateau);
 		add(this.nvTour, BorderLayout.SOUTH);
@@ -67,10 +67,11 @@ public class Vue extends JFrame {
 		setSize(new Dimension(800, 500));
 		setMaximumSize(new Dimension(1920, 1080));
 
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public JPlateau getPlateau(){
+	public JPlateauOie getPlateau(){
 		return this.plateau;
 	}
 	

@@ -1,6 +1,7 @@
 package interfaceGraphique;
 
 import jeu.Partie;
+import jeu.PartieNullException;
 import jeu.PartieOie1;
 import jeu.PartieOie2;
 import jeu.PartieOie3;
@@ -48,7 +49,11 @@ public class Modele {
 	public void deroulement() {
 		try {
 			partieEnCours.deroulement();
+			if(partieEnCours.estfinie())
+				new FinDePartieOie(this,"Il y a un gagnant ! ");
 		} catch (NullPointerException np) {
+		} catch (PartieNullException pn) {
+			new FinDePartieOie(this, "Tout le monde a perdu ! ");
 		}
 	}
 
