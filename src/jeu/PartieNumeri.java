@@ -130,22 +130,22 @@ public class PartieNumeri extends Partie {
 					tmp.setOccupant(pionCour);
 				}
 			}
-		} while (it.hasNext());
+		} while (it.hasNext() && !estfinie());
 	}
 
-	public void finPartie() {
+	public String finPartie() {
 		for (JoueurNumeri j : this.participants) {
 			j.calculScore();
 		}
-		this.afficheClassement();
+		return afficheClassement();
 	}
 
-	private void afficheClassement() {
+	private String afficheClassement() {
 		String rep = "";
 		SortedMap<Integer, String> classement = new TreeMap<>();
 		for (JoueurNumeri j : this.participants)
 			classement.put(j.getScore(), j.getNom());
-		System.out.println(classement);
+		return classement.toString();
 	}
 
 	private boolean peutSeDeplacer(int position) {

@@ -8,7 +8,7 @@ public class Palette {
 
 		public Palette() {
 			this.vue = new Vue();
-			this.model = new Modele();
+			this.model = new Modele(vue);
 			vue.setVisible(true);
 		}
 

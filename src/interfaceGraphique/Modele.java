@@ -6,13 +6,16 @@ import jeu.PartieOie1;
 import jeu.PartieOie2;
 import jeu.PartieOie3;
 import jeu.PartieNumeri;
+import jeu.PartieOie;
 
 public class Modele {
 
 	private Partie partieEnCours;
 	private int valMax;
+	private Vue vue;
 
-	public Modele() {
+	public Modele(Vue vue) {
+		this.vue=vue;
 	}
 
 	public void init(String type, String[] nomsDesJoueurs) {
@@ -37,6 +40,7 @@ public class Modele {
 			((PartieNumeri) this.partieEnCours).initialisation(nomsDesJoueurs);
 			break;
 		}
+		vue.majJPlateau(partieEnCours);
 	}
 	
 
@@ -50,10 +54,17 @@ public class Modele {
 		try {
 			partieEnCours.deroulement();
 			if(partieEnCours.estfinie())
-				new FinDePartieOie(this,"Il y a un gagnant ! ");
+				if(partieEnCours instanceof PartieOie){
+					new FinDePartieOie(this,"Il y a un gagnant ! ");
+				}
+				if(partieEnCours instanceof PartieNumeri){
+					new FinDePartieNumeri(this,"Il y a un gagnant ! ");
+				}
 		} catch (NullPointerException np) {
 		} catch (PartieNullException pn) {
-			new FinDePartieOie(this, "Tout le monde a perdu ! ");
+			if(partieEnCours instanceof PartieOie){
+				new FinDePartieOie(this, "Tout le monde a perdu ! ");
+			}
 		}
 	}
 
@@ -63,6 +74,13 @@ public class Modele {
 		} catch (NullPointerException np) {
 			return "";
 		}
+	}
+
+	public String getClassement() {
+		if(this.partieEnCours instanceof PartieNumeri){
+			return ((PartieNumeri)partieEnCours).finPartie();
+		}
+		return null;
 	}
 
 }

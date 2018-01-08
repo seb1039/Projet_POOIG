@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.event.ChangeListener;
 
+import jeu.Partie;
+import jeu.PartieNumeri;
+
 public class Controleur implements ActionListener{
 	
 	private Modele modele;
@@ -22,7 +25,7 @@ public class Controleur implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		modele.deroulement();
 		vue.majPlateau();
-		
 	}
-
+	
+	
 }

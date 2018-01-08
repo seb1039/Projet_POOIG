@@ -16,37 +16,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class FinDePartieOie extends JDialog {
+public class FinDePartieNumeri extends JDialog {
 
 	Modele modele;
 
-	public FinDePartieOie(Modele modele,String message) {
+	public FinDePartieNumeri(Modele modele,String message) {
 		this.modele = modele;
 		setLayout(new GridLayout(3,1));
 
-		// Panneau Cause
-		JPanel panneauCause = new JPanel();
-		panneauCause.setLayout(new BoxLayout(panneauCause, BoxLayout.X_AXIS));
+		
 
-		JTextArea titreCause = new JTextArea("Cause : ");
-		titreCause.setEditable(false);
+		// Panneau Classement
+		JPanel panneauClassement = new JPanel();
+		panneauClassement.setLayout(new BoxLayout(panneauClassement, BoxLayout.X_AXIS));
 
-		JTextArea cause = new JTextArea(message);
-		cause.setEditable(false);
-		panneauCause.add(titreCause);
-		panneauCause.add(cause);
+		JTextArea titreClassement = new JTextArea("Classement : ");
+		titreClassement.setEditable(false);
 
-		// Panneau Gagnant
-		JPanel panneauGagnant = new JPanel();
-		panneauGagnant.setLayout(new BoxLayout(panneauGagnant, BoxLayout.X_AXIS));
-
-		JTextArea titreGagnant = new JTextArea("Gagnant : ");
-		titreGagnant.setEditable(false);
-
-		JTextArea gagnant = new JTextArea("" +this.modele.getCases(63));
-		gagnant.setEditable(false);
-		panneauGagnant.add(titreGagnant);
-		panneauGagnant.add(gagnant);
+		JTextArea classement = new JTextArea("" +this.modele.getClassement());
+		classement.setEditable(false);
+		panneauClassement.add(titreClassement);
+		panneauClassement.add(classement);
 
 		// Panneau Boutons
 		
@@ -74,8 +64,7 @@ public class FinDePartieOie extends JDialog {
 		panneauBoutons.add(quitter);
 		
 		// On affiche le tout
-		add(panneauCause);
-		add(panneauGagnant);
+		add(panneauClassement);
 		add(panneauBoutons);
 		setVisible(true);
 		setSize(new Dimension(300, 80));

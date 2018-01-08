@@ -212,7 +212,7 @@ public abstract class PartieOie extends Partie {
 				}
 
 			}
-		} while (it.hasNext());
+		} while (it.hasNext() && !estfinie());
 		System.out.println("Tour n° " + this.getTourActuel() + " : ");
 		System.out.println(this.toString());
 	}

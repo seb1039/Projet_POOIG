@@ -15,6 +15,7 @@ public class NouvellePartie extends JFrame {
 	private int nombreDeJoueur = 2;
 	private JPanel haut;
 	private Modele modele;
+	private Vue vue;
 
 	public NouvellePartie(Modele modele) {
 		super();
@@ -36,7 +37,9 @@ public class NouvellePartie extends JFrame {
 		// Bouton +1
 		JButton plusUn = new JButton("+1");
 		plusUn.addActionListener(event -> {
-			haut.add(new PanneauJoueur(++nombreDeJoueur));
+			PanneauJoueur tmp =new PanneauJoueur(++nombreDeJoueur);
+			haut.add(tmp);
+			panneaux.add(tmp);
 			setVisible(true);
 
 		});

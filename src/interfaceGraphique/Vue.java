@@ -17,10 +17,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import com.sun.org.apache.bcel.internal.generic.POP;
+
+import jeu.Partie;
+import jeu.PartieNumeri;
+
 public class Vue extends JFrame {
 
 	private JMenuBar menu;
-	private JPlateauOie plateau;
+	private JPlateau plateau;
 	private Button nvTour;
 
 	private Container container;
@@ -30,7 +35,7 @@ public class Vue extends JFrame {
 	public Vue() {
 
 		// Controleur et Container
-		modele = new Modele();
+		modele = new Modele(this);
 		controleur = new Controleur(this.modele, this);
 		container = this.getContentPane();
 
@@ -71,13 +76,26 @@ public class Vue extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public JPlateauOie getPlateau(){
+	public JPlateau getPlateau(){
 		return this.plateau;
 	}
 	
 	public void majPlateau(){
 		plateau.majPlateau();
 	}
+	
+	public void majJPlateau(Partie partie){
+		this.remove(this.plateau);
+		if(partie instanceof PartieNumeri){
+			this.plateau= new JPlateauNumeri(this.modele);
+		}
+		else{
+			this.plateau= new JPlateauOie(this.modele);
+		}
+		add(this.plateau);
+		setVisible(true);
+	}
+
 
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {

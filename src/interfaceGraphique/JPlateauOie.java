@@ -6,7 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class JPlateauOie extends JPanel {
+public class JPlateauOie extends JPlateau {
 	
 	private JCases[] plateau;
 	private Modele modele;
