@@ -3,6 +3,7 @@ package joueur;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import interfaceGraphique.PropositionsNumeri;
 import plateau.De;
 import plateau.Plateau;
 
@@ -44,8 +45,6 @@ public class JoueurNumeri extends Joueur {
 	public String[] joueTour(De d) {
 		int i = lanceDe(d);
 		return this.gestionPropositions(i);
-		// String[] pionsADeplacer = this.gestionPropositions(i);
-		// this.seDeplacer(pionsADeplacer);
 	}
 
 	/**
@@ -72,13 +71,23 @@ public class JoueurNumeri extends Joueur {
 	 * @see JoueurNumeri#afficherPropositions(int)
 	 */
 	public String[] gestionPropositions(int i) {
+	//	PropositionsNumeri p = new PropositionsNumeri(this.getTableauPropopositions(i));
 		this.afficherPropositions(i);
 		String[] rep = new String[1];
 		boolean flag;
 		int indice = 0;
 		do {
-			indice = this.choixPropositions();
+		
+		indice = this.choixPropositions();
+		//	indice = p.getChoix();
 			try {
+		/**		try {
+					notify();
+					rep = this.propositions.getProposition(indice - 1);
+				} catch (IllegalMonitorStateException e) {
+					rep = this.propositions.getProposition(indice - 1);
+				}
+		**/
 				rep = this.propositions.getProposition(indice - 1);
 				flag = false;
 			} catch (PropositionIncorrecteException e) {
@@ -121,9 +130,19 @@ public class JoueurNumeri extends Joueur {
 	 * @see JoueurNumeri#gestionPropositions
 	 */
 	public void afficherPropositions(int i) {
-		this.propositions = new Propositions(i);
-		System.out.println(propositions.toString());
+		System.out.println(getTableauPropopositions(i));
 	}
+	
+	public String getTableauPropopositions(int i) {
+		this.propositions = new Propositions(i);
+		return propositions.toString();
+		
+	}
+	
+	/**
+	 * Ceci est la classe proposition qui gère les propositions de coups possibles
+	 *
+	 */
 
 	private class Propositions {
 
@@ -143,14 +162,17 @@ public class JoueurNumeri extends Joueur {
 		 */
 		private void generationProposition(int i) {
 			if (i < 6) {
-				for (int j = 0; j <= i / 2 + 1; j++) {
+				for (int j = 0; j <= i  + 1; j++) {
 					if ((i - j) > j)
 						propositions.add("" + (i - j) + " " + j + " 0");
 				}
 			} else if (i >= 6)
 				for (int j = 0; j < 7; j++) {
 					for (int k = 0; k < 7; k++) {
-						if (j > k && k > i - (j + k) && i - (j + k) < 7 && i - (j + k) >= 0) {
+					//	if (j > k && k > i - (j + k) && i - (j + k) < 7 && i - (j + k) >= 0) {
+						if (  i - (j + k) < 7 && i - (j + k) > 0 &&
+								 j < 7 && j > 0 &&
+								k < 7 &&  k > 0) {
 							propositions.add("" + j + " " + k + " " + (i - (j + k)));
 						}
 					}

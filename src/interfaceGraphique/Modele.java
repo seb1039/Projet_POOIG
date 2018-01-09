@@ -15,7 +15,7 @@ public class Modele {
 	private Vue vue;
 
 	public Modele(Vue vue) {
-		this.vue=vue;
+		this.vue = vue;
 	}
 
 	public void init(String type, String[] nomsDesJoueurs) {
@@ -42,27 +42,26 @@ public class Modele {
 		}
 		vue.majJPlateau(partieEnCours);
 	}
-	
 
 	public void setValMax(int valMax) {
 		this.valMax = valMax;
-		if(partieEnCours instanceof PartieNumeri)
+		if (partieEnCours instanceof PartieNumeri)
 			((PartieNumeri) this.partieEnCours).setValMaxDe(valMax);
 	}
 
 	public void deroulement() {
 		try {
 			partieEnCours.deroulement();
-			if(partieEnCours.estfinie())
-				if(partieEnCours instanceof PartieOie){
-					new FinDePartieOie(this,"Il y a un gagnant ! ");
+			if (partieEnCours.estfinie()) {
+				if (partieEnCours instanceof PartieOie) {
+					new FinDePartieOie(this, "Il y a un gagnant ! ");
+				} else if (partieEnCours instanceof PartieNumeri) {
+					new FinDePartieNumeri(this, "Il y a un gagnant ! ");
 				}
-				if(partieEnCours instanceof PartieNumeri){
-					new FinDePartieNumeri(this,"Il y a un gagnant ! ");
-				}
+			}
 		} catch (NullPointerException np) {
 		} catch (PartieNullException pn) {
-			if(partieEnCours instanceof PartieOie){
+			if (partieEnCours instanceof PartieOie) {
 				new FinDePartieOie(this, "Tout le monde a perdu ! ");
 			}
 		}
@@ -77,8 +76,8 @@ public class Modele {
 	}
 
 	public String getClassement() {
-		if(this.partieEnCours instanceof PartieNumeri){
-			return ((PartieNumeri)partieEnCours).finPartie();
+		if (this.partieEnCours instanceof PartieNumeri) {
+			return ((PartieNumeri) partieEnCours).finPartie();
 		}
 		return null;
 	}

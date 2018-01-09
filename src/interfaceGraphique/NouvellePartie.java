@@ -50,14 +50,15 @@ public class NouvellePartie extends JFrame {
 		JButton demarrer = new JButton("Let's go");
 		demarrer.addActionListener(event -> {
 			TailleDuDe de;
-			if(cp.getSelectedItem().equals("Partie Numeri")){
-				de = new TailleDuDe(this.modele);
-			}
+			
 			String[] nomsDesJoueurs = new String[panneaux.size()];
 			int i = 0;
 			for(PanneauJoueur p: panneaux){
 				nomsDesJoueurs[i] = p.getNom();
 				i++;
+			}
+			if(cp.getSelectedItem().equals("Partie Numeri")){
+				de = new TailleDuDe(this.modele);
 			}
 			modele.init(cp.getSelectedItem(), nomsDesJoueurs);
 			setVisible(false);
