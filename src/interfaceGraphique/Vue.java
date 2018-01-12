@@ -17,8 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-import com.sun.org.apache.bcel.internal.generic.POP;
-
 import jeu.Partie;
 import jeu.PartieNumeri;
 
@@ -47,12 +45,17 @@ public class Vue extends JFrame {
 		exit.addActionListener(event -> {
 			System.exit(JFrame.EXIT_ON_CLOSE);
 		});
-		JMenu file = new JMenu("File");
 		JMenuItem newGame = new JMenuItem("New Game");
 		newGame.addActionListener(event -> {
 			new NouvellePartie(this.modele);
 		});
+		JMenuItem help = new JMenuItem("Help");
+		help.addActionListener(event -> {
+			new Help();
+		});
+		JMenu file = new JMenu("File");
 		file.add(newGame);
+		file.add(help);
 		file.add(exit);
 		this.menu = new JMenuBar();
 		menu.add(file);
